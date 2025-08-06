@@ -4,6 +4,10 @@
 #serviceUrl='xxxxxxxxxxxxxxx'
 #assetGroupId='xxxxxxxxxxxxxxx'
 
+echo "$serviceUrl"
+echo "$asocApiKeyId"
+echo "$asocApiKeySecret"
+
 curl -k -s -X POST --header 'Content-Type:application/json' --header 'Accept:application/json' -d '{"KeyId":"'"$asocApiKeyId"'","KeySecret":"'"$asocApiKeySecret"'"}' "https://$serviceUrl/api/v4/Account/ApiKeyLogin"
 
 asocToken=$(curl -k -s -X POST --header 'Content-Type:application/json' --header 'Accept:application/json' -d '{"KeyId":"'"$asocApiKeyId"'","KeySecret":"'"$asocApiKeySecret"'"}' "https://$serviceUrl/api/v4/Account/ApiKeyLogin" | grep -oP '(?<="Token":\ ")[^"]*')
