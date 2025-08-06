@@ -49,3 +49,4 @@ scan-job:
     when: always
     paths:
       - "*.html"
+      - "*.xml"
