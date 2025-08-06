@@ -4,6 +4,8 @@
 #serviceUrl='xxxxxxxxxxxxxxx'
 #assetGroupId='xxxxxxxxxxxxxxx'
 
+curl -k -s -X POST --header 'Content-Type:application/json' --header 'Accept:application/json' -d '{"KeyId":"'"$asocApiKeyId"'","KeySecret":"'"$asocApiKeySecret"'"}' "https://$serviceUrl/api/v4/Account/ApiKeyLogin"
+
 asocToken=$(curl -k -s -X POST --header 'Content-Type:application/json' --header 'Accept:application/json' -d '{"KeyId":"'"$asocApiKeyId"'","KeySecret":"'"$asocApiKeySecret"'"}' "https://$serviceUrl/api/v4/Account/ApiKeyLogin" | grep -oP '(?<="Token":\ ")[^"]*')
 if [ -z "$asocToken" ]; then
 	echo "The token variable is empty or wrong. Check the API keys.";
