@@ -8,3 +8,14 @@ if [ -z "$asocToken" ]; then
 	echo "The token variable is empty. Check the authentication process.";
     exit 1
 fi
+
+
+
+
+
+
+
+
+
+
+curl -k -s -X 'GET' "https://$serviceUrl/api/v4/Account/Logout" -H 'accept: */*' -H "Authorization: Bearer $asocToken"
