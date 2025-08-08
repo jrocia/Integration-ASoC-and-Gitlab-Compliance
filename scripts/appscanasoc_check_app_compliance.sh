@@ -12,10 +12,28 @@ fi
 
 appData=$(curl -s -k -X GET --header 'Authorization: Bearer '"$asocToken"'' --header 'Accept:application/json' "https://$serviceUrl/api/v4/Apps?%24filter=Name%20eq%20%27$asocAppName%27")
 
-appOverallCompliance=$(echo $appData | jq '.Items[0].OverallCompliance')
-echo "$appOverallCompliance"
+#appOverallCompliance=$(echo $appData | jq '.Items[0].OverallCompliance')
+#echo "$appOverallCompliance"
 
 appCompliances=$(echo $appData | jq -r '.Items[0].ComplianceStatuses[] | "Enabled: \(.Enabled) | Name: \(.Name) | Compliant: \(.Compliant)"')
 echo "$appCompliances"
+
+#appComplianceEnabled=$(echo $appData | jq -r '.Items[0].ComplianceStatuses[].Enabled')
+#appComplianceCompliant=$(echo $appData | jq -r '.Items[0].ComplianceStatuses[].Compliant')
+
+#echo "$appCompliances"
+
+compliance_count=$(echo "$appData" | jq '.Items[0].ComplianceStatuses | length')
+
+for ((i=0; i<$compliance_count; i++)); do
+    enabled=$(echo "$appData" | jq -r ".Items[0].ComplianceStatuses[$i].Enabled")
+    compliant=$(echo "$appData" | jq -r ".Items[0].ComplianceStatuses[$i].Compliant")
+    if [[ "$enabled" == "true" && "$compliant" == "false" ]]; then
+        echo "Compliance $i está habilitado mas **não** está em conformidade. Falhando..."
+        exit 1
+    fi
+done
+
+echo "Todos os itens de compliance habilitados estão em conformidade."
 
 curl -k -s -X 'GET' "https://$serviceUrl/api/v4/Account/Logout" -H 'accept: */*' -H "Authorization: Bearer $asocToken"
