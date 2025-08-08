@@ -25,7 +25,7 @@ for ((i=0; i<$compliance_count; i++)); do
     enabled=$(echo "$appData" | jq -r ".Items[0].ComplianceStatuses[$i].Enabled")
     compliant=$(echo "$appData" | jq -r ".Items[0].ComplianceStatuses[$i].Compliant")
     if [[ "$enabled" == "true" && "$compliant" == "false" ]]; then
-        echo "The application is not in compliance with $name."
+        echo "The application is not in compliance with Enterprise policies."
         exit 1
     fi
 done
