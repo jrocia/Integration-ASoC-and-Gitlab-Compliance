@@ -25,9 +25,9 @@ for ((i=0; i<$compliance_count; i++)); do
     enabled=$(echo "$appData" | jq -r ".Items[0].ComplianceStatuses[$i].Enabled")
     compliant=$(echo "$appData" | jq -r ".Items[0].ComplianceStatuses[$i].Compliant")
     if [[ "$enabled" == "true" && "$compliant" == "false" ]]; then
-        echo "the application is not in compliance with $name."
+        echo "The application is not in compliance with $name."
         exit 1
     fi
 done
-
+echo "The application is compliance with Enterprise policies."
 curl -k -s -X 'GET' "https://$serviceUrl/api/v4/Account/Logout" -H 'accept: */*' -H "Authorization: Bearer $asocToken"
