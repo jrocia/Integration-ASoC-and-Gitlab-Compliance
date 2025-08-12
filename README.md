@@ -14,7 +14,7 @@ Security Gate response failing or succeeding build
 
 <b><h1>SAST:</b></h1><br>
 Based in 3 components:<br>
-1 - a Dockerfile to generate a image container where download ASOC command line client and some tools to be used by Gitlab image Pipeline<br>
+1 - (optional) A Dockerfile to generate a image container where download ASOC command line client and some tools to be used by Gitlab image Pipeline<br>
 2 - YAML project file with a scan job to be used in a YAML project file<br>
 3 - some variable that could be on YAML project file or be add directly on Gitlab Project (Settings > CI/CD and expand the Variables)<br>
 
@@ -47,11 +47,12 @@ variables:
   assetGroupId: 'xxxxxxxxxxxxxx'
   scanName: $CI_PROJECT_NAME-$CI_JOB_ID
   scanLatestCommitFiles: 'no' # yes or no. Scan only the latest committed files. Partial scan.
+  scoScan: 'no' # yes or no. Source Code Only scan. This option will not scan binaries.
   sevSecGw: 'criticalIssues'
   maxIssuesAllowed: 100
 
 include:
-  - remote: 'https://raw.githubusercontent.com/jrocia/Integration-ASoC-and-Gitlab/main/yaml/appscanasoc_scan_sast.yaml'
+  - remote: 'https://raw.githubusercontent.com/jrocia/Integration-ASoC-and-Gitlab-Compliance/main/yaml/appscanasoc_scan_sast.yaml'
 
 stages:
 - scan-sast
