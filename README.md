@@ -60,38 +60,4 @@ scan-job:
   stage: scan-sast
 ````
 
-<b><h1>DAST:</b></h1><br>
-Based in 2 components:<br>
-1 - YAML project file with a scan job to be used in a YAML project file.<br>
-2 - some variable that could be on YAML project file or be add directly on Gitlab Project (Settings > CI/CD and expand the Variables)<br>
 
-Gitlab YAML file to run DAST analyzes:
-````yaml
-# The options to sevSecGw are highIssues, mediumIssues, lowIssues and totalIssues.
-# maxIssuesAllowed is the amount of issues in selected sevSecGw.
-# appId is application id located in ASoC.
-# appscanPresenceId is AppScan Presence ID that will be used to reach out URL.
-# If there is login.dast.config and manualexplorer.dast.config in repository it will be uploaded and used in Scan otherwise will be ignored.
-variables:
-  asocApiKeyId: 'xxxxxxxxxxxxxxxx'
-  asocApiKeySecret: 'xxxxxxxxxxxxxxxx'
-  asocAppName: $CI_PROJECT_NAME
-  serviceUrl: 'cloud.appscan.com'
-  assetGroupId: 'xxxxxxxxxxxxxxxx'
-  scanName: $CI_PROJECT_NAME-$CI_JOB_ID
-  urlTarget: 'https://demo.testfire.net?mode=demo'
-  loginDastConfig: 'login.dast.config'
-  manualExplorerDastConfig: 'manualexplorer.dast.config'
-  appscanPresenceId: ''
-  sevSecGw: 'criticalIssues'
-  maxIssuesAllowed: 100
-
-include:
-  - remote: 'https://raw.githubusercontent.com/jrocia/Integration-ASoC-and-Gitlab/main/yaml/appscanasoc_scan_dast.yaml'
-
-stages:
-- scan-dast
-
-scan-job:
-  stage: scan-dast
-````
