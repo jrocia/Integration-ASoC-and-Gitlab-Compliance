@@ -24,7 +24,7 @@ if [ "$scoScan" = 'yes' ]; then
   echo "AppScan Prepare using SCO parameter.";
   appscan.sh prepare -sco -acceptssl
 else
-  echo "AppScan Prepare.";
+  echo "AppScan Prepare without parameters.";
   appscan.sh prepare -acceptssl
 fi
 
