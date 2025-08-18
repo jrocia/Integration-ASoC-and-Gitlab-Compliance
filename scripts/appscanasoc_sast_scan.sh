@@ -16,7 +16,7 @@ if ! [ -x "$(command -v appscan.sh)" ]; then
   export PATH="$HOME/SAClientUtil/bin:${PATH}"
 fi
 
-appscan.sh version
+appscan.sh version -acceptssl
 appscan.sh update -acceptssl
 
 # Generate IRX files based on source root folder downloaded by Gitlab
