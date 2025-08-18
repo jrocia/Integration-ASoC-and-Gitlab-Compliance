@@ -28,7 +28,7 @@ appscan.sh update -acceptssl
 #  appscan.sh prepare -acceptssl
 #fi
 
-appscan.sh prepare -sco -acceptssl
+appscan.sh prepare -sco -nc -acceptssl
 
 # Authenticate in ASOC
 asocToken=$(curl -k -s -X POST --header 'Content-Type:application/json' --header 'Accept:application/json' -d '{"KeyId":"'"$asocApiKeyId"'","KeySecret":"'"$asocApiKeySecret"'"}' "https://$serviceUrl/api/v4/Account/ApiKeyLogin" | grep -oP '(?<="Token":\ ")[^"]*')
