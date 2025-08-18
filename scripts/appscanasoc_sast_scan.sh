@@ -45,6 +45,7 @@ if [ -f "$irxFile" ]; then
     echo "$irxFile exist. It will be uploaded to ASoC. IRX file id is $irxFileId.";
 else
     echo "IRX file not identified.";
+	ls -t *.irx
 fi
 
 # Start scan. If scan only latest commited files equal yes, personal scan will be selected.
