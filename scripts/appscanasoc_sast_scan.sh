@@ -28,6 +28,7 @@ appscan.sh update -acceptssl
 #  appscan.sh prepare -acceptssl
 #fi
 
+echo "AppScan Prepare using SCO parameter and NC." 
 appscan.sh prepare -sco -nc -acceptssl
 
 # Authenticate in ASOC
