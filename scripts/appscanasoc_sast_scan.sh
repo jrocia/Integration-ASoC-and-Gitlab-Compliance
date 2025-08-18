@@ -29,7 +29,7 @@ appscan.sh update -acceptssl
 #fi
 
 echo "AppScan Prepare using SCO parameter and NC." 
-appscan.sh prepare -sco -nc -acceptssl
+appscan.sh prepare -sco -acceptssl
 
 # Authenticate in ASOC
 asocToken=$(curl -k -s -X POST --header 'Content-Type:application/json' --header 'Accept:application/json' -d '{"KeyId":"'"$asocApiKeyId"'","KeySecret":"'"$asocApiKeySecret"'"}' "https://$serviceUrl/api/v4/Account/ApiKeyLogin" | grep -oP '(?<="Token":\ ")[^"]*')
