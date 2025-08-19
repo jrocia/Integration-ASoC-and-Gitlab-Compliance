@@ -17,6 +17,9 @@ else
   echo "All files in the repository will be scanned."
 fi
 
+pwd
+cat appscan-config.xml
+
 # Verify if the appscan-config.xml is in the right folder (project root folder)
 if [ "$(dirname "$(realpath appscan-config.xml)")" != "$(realpath "$CI_PROJECT_DIR")" ]; then
     echo "Moving appscan-config.xml to $CI_PROJECT_DIR..."
