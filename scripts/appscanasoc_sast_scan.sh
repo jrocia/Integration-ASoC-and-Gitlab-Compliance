@@ -16,6 +16,8 @@ if ! [ -x "$(command -v appscan.sh)" ]; then
   export PATH="$HOME/SAClientUtil/bin:${PATH}"
 fi
 
+cd $CI_PROJECT_DIR
+echo "Running AppScan Prepare in the folder $CI_PROJECT_DIR."
 appscan.sh version -acceptssl
 appscan.sh update -acceptssl
 
