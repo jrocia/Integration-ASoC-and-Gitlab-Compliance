@@ -16,3 +16,5 @@ if [ "$scanLatestCommitFiles" = 'yes' ]; then
 else
   echo "All files in the repository will be scanned."
 fi
+
+mv appscan-config.xml ../
