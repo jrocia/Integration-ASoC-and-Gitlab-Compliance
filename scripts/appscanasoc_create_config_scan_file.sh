@@ -17,4 +17,4 @@ else
   echo "All files in the repository will be scanned."
 fi
 
-mv appscan-config.xml ../
+mv appscan-config.xml $CI_PROJECT_DIR
