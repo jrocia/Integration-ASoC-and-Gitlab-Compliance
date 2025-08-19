@@ -17,4 +17,10 @@ else
   echo "All files in the repository will be scanned."
 fi
 
-mv appscan-config.xml $CI_PROJECT_DIR
+# Verifica se o arquivo já está dentro do diretório alvo
+if [ "$(dirname "$(realpath appscan-config.xml)")" != "$(realpath "$CI_PROJECT_DIR")" ]; then
+    echo "Moving appscan-config.xml to $CI_PROJECT_DIR..."
+    mv appscan-config.xml "$CI_PROJECT_DIR"/
+else
+    echo "The appscan-config.xml already in the folder $CI_PROJECT_DIR."
+fi
