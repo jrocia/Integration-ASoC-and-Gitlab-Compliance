@@ -15,8 +15,8 @@ stages:
 scan-job:
   stage: scan-sast
   script:
-#    - apt update > /dev/null && apt install curl jq git unzip -y > /dev/null
-    - apt update > /dev/null && apt install curl jq git unzip maven -y > /dev/null
+    - apt update > /dev/null && apt install curl jq git unzip -y > /dev/null
+#    - apt update > /dev/null && apt install curl jq git unzip maven -y > /dev/null
 
     - echo -e "\e[42mSCAN VARIABLE SUMMARY - The scans service url is $serviceUrl. The AppScan application name is $asocAppName and it is part of asset group id number $assetGroupId. The scan name will be $CI_PROJECT_NAME-$CI_JOB_ID. The Security Gate permit less than $maxIssuesAllowed $sevSecGw severity.\e[0m"
 
