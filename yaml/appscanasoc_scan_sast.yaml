@@ -44,6 +44,9 @@ scan-job:
     - chmod +x appscanasoc_check_app_compliance.sh
     - ./appscanasoc_check_app_compliance.sh
 
+    - echo "Artifact URL:"
+    - echo "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID/artifacts/download"
+
   artifacts:
     when: always
     paths:
