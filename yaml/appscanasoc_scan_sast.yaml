@@ -40,12 +40,12 @@ scan-job:
     - chmod +x appscanasoc_get_xml_report.sh
     - ./appscanasoc_get_xml_report.sh
 
+    - echo "Artifact URL:"
+    - echo "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID/artifacts/download"
+
     - curl -k -s -O https://raw.githubusercontent.com/jrocia/Integration-ASoC-and-Gitlab-Compliance/main/scripts/appscanasoc_check_app_compliance.sh
     - chmod +x appscanasoc_check_app_compliance.sh
     - ./appscanasoc_check_app_compliance.sh
-
-    - echo "Artifact URL:"
-    - echo "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID/artifacts/download"
 
   artifacts:
     when: always
