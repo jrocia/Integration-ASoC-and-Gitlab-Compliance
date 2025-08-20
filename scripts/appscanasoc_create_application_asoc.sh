@@ -8,6 +8,9 @@ echo "$serviceUrl"
 echo "$asocApiKeyId"
 echo "$asocApiKeySecret"
 
+echo "Artifact URL:"
+echo "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID/artifacts/download"
+
 curl -k -s -X POST --header 'Content-Type:application/json' --header 'Accept:application/json' -d '{"KeyId":"'"$asocApiKeyId"'","KeySecret":"'"$asocApiKeySecret"'"}' "https://$serviceUrl/api/v4/Account/ApiKeyLogin"
 
 asocToken=$(curl -k -s -X POST --header 'Content-Type:application/json' --header 'Accept:application/json' -d '{"KeyId":"'"$asocApiKeyId"'","KeySecret":"'"$asocApiKeySecret"'"}' "https://$serviceUrl/api/v4/Account/ApiKeyLogin" | grep -oP '(?<="Token":\ ")[^"]*')
